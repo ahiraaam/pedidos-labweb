@@ -1,13 +1,53 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App {
+  font-family: sans-serif;
+  text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.Container {
+  width: 100%;
+}
+
+#left {
+  background: lightgreen;
+  width: 25%;
+  float: left;
+}
+
+#right {
+  background: lightyellow;
+  width: 25%;
+  float: right;
+}
+#last {
+  background: lightyellow;
+  width: 25%;
+  float: right;
+}
+#middle {
+  background: lightyellow;
+  width: 25%;
+  float: right;
+}
+
+.Container {
+  background: grey;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#left div,
+#right div,
+#last div,
+#middle div {
+  border: 1px pink solid;
+  padding: 10px;
+  background: coral;
+  color: white;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.gu-mirror {
+  background: purple;
+  cursor: pointer;
 }
