@@ -9,7 +9,7 @@
 }
 
 .list {
-  background: lightgreen;
+  background: rgb(130, 229, 233);
   width: 20%;
   float: left;
 }
@@ -17,7 +17,7 @@
   float: right !important;
 }
 .Container {
-  background: grey;
+  background: rgb(46, 104, 170);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -27,15 +27,39 @@
 #last div,
 #middle div,
 .list div {
-  border: 1px pink solid;
+  border: 1px solid rgb(46, 104, 170);
   padding: 10px;
-  background: coral;
-  color: white;
+  background: white;
+  color: black;
   margin: 10px;
   cursor: pointer;
 }
 
 .gu-mirror {
-  background: purple;
+  background: rgb(59, 80, 124);
   cursor: pointer;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.formulario {
+  margin: auto;
+  padding-bottom: 4vh;
+  width: 50%;
+}
+.formulario input {
+  width: 70%;
+  height: 3vh;
+}
+.formulario button {
+  background-color: rgb(59, 80, 124);
+  color: white;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-left: 2vw;
+  border: none;
+  border-radius: 5px;
 }

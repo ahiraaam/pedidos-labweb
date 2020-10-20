@@ -96,8 +96,9 @@ export default function App() {
     <div className="App">
       <h1>Dashboard</h1>
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>Crear Pedido</label>
+        <h3>Crear Pedido</h3>
+
+        <form onSubmit={handleSubmit} className="formulario">
           <input
             type="text"
             placeholder="Pedido"
