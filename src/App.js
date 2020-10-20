@@ -27,6 +27,18 @@ export default function App() {
     );
     drake.on("drop", function (el, target, source, sibling) {
       console.log("Elemento", el, "Target", target, "Source", source, sibling);
+      var elId = el.id;
+      var destinoId = target.id;
+      console.log(elId);
+      console.log("DestinoID", destinoId);
+      updateState(elId, destinoId);
+
+      if (source.id == 2 && target.id == 1) {
+        drake.cancel(el);
+      }
+      if (source.id == 4) {
+        drake.cancel(el);
+      }
     });
   }, []);
 
@@ -59,7 +71,7 @@ export default function App() {
       .then((res) => {
         console.log(res);
         console.log("res data", res.data);
-        listaPedidos.push({ id: res.data.id[0], name: pedido });
+        listaPedidos.push({ id: res.data.id[0], name: pedido, id_destino: 1 });
         console.log(listaPedidos);
       })
       .catch((err) => {
@@ -96,38 +108,61 @@ export default function App() {
         </form>
       </div>
       <div className="Container">
-        <div key="1" id="left" ref={salidaVar}>
+        <div key="1" id="1" ref={salidaVar} className="list">
           1. Salida de planta
-          {pedidos.map((ped) => (
-            <div key={ped.id} draggable="true">
-              {ped.name}
-            </div>
-          ))}
+          {pedidos
+            .filter((ped) => ped.id_destino === 1)
+            .map((item) => (
+              <div key={item.id} id={item.id}>
+                {item.name}
+              </div>
+            ))}
         </div>
 
-        <div key="2" id="last" ref={localVar}>
+        <div key="2" id="2" ref={localVar} className="list">
           2. En Local Delivery Center
-          <div>Swap us around</div>
-          <div>Swap things around</div>
-          <div>Swap everything around</div>
+          {pedidos
+            .filter((ped) => ped.id_destino === 2)
+            .map((item) => (
+              <div key={item.id} id={item.id}>
+                {item.name}
+              </div>
+            ))}
         </div>
-        <div key="3" id="middle" ref={procesoVar}>
+        <div key="3" id="3" ref={procesoVar} className="list">
           3. En proceso de entrega
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
+          {pedidos
+            .filter((ped) => ped.id_destino === 3)
+            .map((item) => (
+              <div key={item.id} id={item.id}>
+                {item.name}
+              </div>
+            ))}
         </div>
-        <div key="4" id="right" ref={entregaCompletaVar}>
-          4. Entregado
-          <div>Swap us around</div>
-          <div>Swap things around</div>
-          <div>Swap everything around</div>
+        <div key="4" id="4" ref={entregaCompletaVar} className="list">
+          4. Entregado Completo
+          {pedidos
+            .filter((ped) => ped.id_destino === 4)
+            .map((item) => (
+              <div key={item.id} id={item.id}>
+                {item.name}
+              </div>
+            ))}
         </div>
-        <div key="5" id="right" ref={entregaFallidaVar}>
-          4. Entregado
-          <div>Swap us around</div>
-          <div>Swap things around</div>
-          <div>Swap everything around</div>
+        <div
+          key="5"
+          id="5"
+          ref={entregaFallidaVar}
+          className="list secondColumn"
+        >
+          4. Entregado Fallido
+          {pedidos
+            .filter((ped) => ped.id_destino === 5)
+            .map((item) => (
+              <div key={item.id} id={item.id}>
+                {item.name}
+              </div>
+            ))}
         </div>
       </div>
     </div>

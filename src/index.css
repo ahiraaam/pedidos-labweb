@@ -1,34 +1,21 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  touch-action: none;
 }
 
 .Container {
   width: 100%;
 }
 
-#left {
+.list {
   background: lightgreen;
-  width: 25%;
+  width: 20%;
   float: left;
 }
-
-#right {
-  background: lightyellow;
-  width: 25%;
-  float: left;
+.secondColumn {
+  float: right !important;
 }
-#last {
-  background: lightyellow;
-  width: 25%;
-  float: left;
-}
-#middle {
-  background: lightyellow;
-  width: 25%;
-  float: left;
-}
-
 .Container {
   background: grey;
   padding-top: 10px;
@@ -38,7 +25,8 @@
 #left div,
 #right div,
 #last div,
-#middle div {
+#middle div,
+.list div {
   border: 1px pink solid;
   padding: 10px;
   background: coral;
