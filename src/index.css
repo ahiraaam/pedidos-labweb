@@ -16,17 +16,17 @@
 #right {
   background: lightyellow;
   width: 25%;
-  float: right;
+  float: left;
 }
 #last {
   background: lightyellow;
   width: 25%;
-  float: right;
+  float: left;
 }
 #middle {
   background: lightyellow;
   width: 25%;
-  float: right;
+  float: left;
 }
 
 .Container {

@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import Dragula from "react-dragula";
+import dragula from "react-dragula";
 import DragulaStyles from "react-dragula/dist/dragula.min.css";
 import axios from "axios";
 export default function App() {
-  let left = React.createRef();
-  let right = React.createRef();
-  let middle = React.createRef();
-  let last = React.createRef();
+  let salidaVar = React.createRef();
+  let localVar = React.createRef();
+  let procesoVar = React.createRef();
+  let entregaCompletaVar = React.createRef();
+  let entregaFallidaVar = React.createRef();
 
   const [pedido, setPedido] = useState("");
 
   const [pedidos, setPedidos] = useState([]);
 
   useEffect(() => {
-    let lElement = ReactDOM.findDOMNode(left.current);
-    let rElement = ReactDOM.findDOMNode(right.current);
-    let mElement = ReactDOM.findDOMNode(middle.current);
-    let lastElement = ReactDOM.findDOMNode(last.current);
+    let salidaElem = ReactDOM.findDOMNode(salidaVar.current);
+    let localElem = ReactDOM.findDOMNode(localVar.current);
+    let procesoElem = ReactDOM.findDOMNode(procesoVar.current);
+    let entregaComElem = ReactDOM.findDOMNode(entregaCompletaVar.current);
+    let entregaFallElem = ReactDOM.findDOMNode(entregaFallidaVar.current);
 
-    Dragula([lElement, rElement, mElement, lastElement], {});
+    var drake = dragula(
+      [salidaElem, localElem, procesoElem, entregaComElem, entregaFallElem],
+      {}
+    );
+    drake.on("drop", function (el, target, source, sibling) {
+      console.log("Elemento", el, "Target", target, "Source", source, sibling);
+    });
   }, []);
 
   useEffect(() => {
@@ -60,9 +68,18 @@ export default function App() {
     setPedidos(listaPedidos);
     console.log("PEDIDOOOS", listaPedidos);
   };
-  const handleDrag = () => {
-    console.log("terminooo");
+
+  const updateState = async (id, destino) => {
+    await axios
+      .put(`http://localhost:8000/api/pedidos/${id}`, { id: destino })
+      .then((res) => {
+        console.log("Estado actualizado");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
   return (
     <div className="App">
       <h1>Dashboard</h1>
@@ -79,7 +96,7 @@ export default function App() {
         </form>
       </div>
       <div className="Container">
-        <div id="left" ref={left}>
+        <div key="1" id="left" ref={salidaVar}>
           1. Salida de planta
           {pedidos.map((ped) => (
             <div key={ped.id} draggable="true">
@@ -87,20 +104,27 @@ export default function App() {
             </div>
           ))}
         </div>
-        <div id="right" ref={right}>
-          4. Entregado
+
+        <div key="2" id="last" ref={localVar}>
+          2. En Local Delivery Center
           <div>Swap us around</div>
           <div>Swap things around</div>
           <div>Swap everything around</div>
         </div>
-        <div id="middle" ref={middle}>
+        <div key="3" id="middle" ref={procesoVar}>
           3. En proceso de entrega
           <div>1</div>
           <div>2</div>
           <div>3</div>
         </div>
-        <div id="last" ref={last}>
-          2. En Local Delivery Center
+        <div key="4" id="right" ref={entregaCompletaVar}>
+          4. Entregado
+          <div>Swap us around</div>
+          <div>Swap things around</div>
+          <div>Swap everything around</div>
+        </div>
+        <div key="5" id="right" ref={entregaFallidaVar}>
+          4. Entregado
           <div>Swap us around</div>
           <div>Swap things around</div>
           <div>Swap everything around</div>
