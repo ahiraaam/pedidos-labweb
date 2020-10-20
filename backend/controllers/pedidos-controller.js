@@ -28,13 +28,16 @@ pedidoCtrl.createPedido = async (req, res) => {
 
 pedidoCtrl.updateDestino = async (req, res) => {
   let pedido = {};
-  pedido.id = req.params.id;
-  pedido.time = Date.now();
-  let destino = req.body.id;
+  pedido.id = (req.params.id);
+  console.log("ID" + req.params.id);
+  pedido.time = new Date();
+  let destino = {}
+  destino.id = req.body.id;
+  console.log("ID destino " + destino.id);
 
-  return await Task.done(pedido, destino)
+  return await Pedido.updateDestino(pedido, destino)
     .then(() => {
-      console.log("Pedido is done with id: ", task.id);
+      console.log("Pedido is done with id: ", pedido);
       res.json("Pedido done");
     })
     .catch((err) => {

@@ -7,7 +7,10 @@ const { showPedidos,
     } = require('../controllers/pedidos-controller');
 
 router.route('/').get(showPedidos)
-            .post(createPedido)
-            .put(updateDestino);
+            .post(createPedido);
+            
+router.route('/:id').put(updateDestino);
+
+
 
 module.exports = router;                   
